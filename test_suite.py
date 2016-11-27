@@ -16,7 +16,7 @@ import os
 import unittest
 from osgeo import gdal
 from PyQt4 import Qt
-from safe.utilities.gis import qgis_version
+# from test.utilities_for_testing import qgis_version
 
 __author__ = 'etiennetrimaille'
 __revision__ = '$Format:%H$'
@@ -30,7 +30,7 @@ def _run_tests(test_suite, package_name):
     count = test_suite.countTestCases()
     print '########'
     print '%s tests has been discovered in %s' % (count, package_name)
-    print 'QGIS : %s' % qgis_version()
+    # print 'QGIS : %s' % qgis_version()
     print 'Python GDAL : %s' % gdal.VersionInfo('VERSION_NUM')
     print 'QT : %s' % Qt.QT_VERSION
     print 'Run slow tests : %s' % (not os.environ.get('ON_TRAVIS', False))
@@ -58,9 +58,8 @@ def test_manually():
 
     You can change this function as much as you want.
     """
-    from safe.impact_statistics.test.test_postprocessor_manager import \
-        PostprocessorManagerTest
-    test_suite = unittest.makeSuite(PostprocessorManagerTest, 'test')
+    from test.test_stream_utilities import TestStreamUtilities
+    test_suite = unittest.makeSuite(TestStreamUtilities, 'test')
     _run_tests(test_suite, 'custom test class')
 
 

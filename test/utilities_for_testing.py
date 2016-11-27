@@ -3,6 +3,7 @@
 
 import sys
 import logging
+from qgis.core import QGis
 
 
 LOGGER = logging.getLogger('QGIS')
@@ -59,3 +60,14 @@ def get_qgis_app():
         IFACE = QgisInterface(CANVAS)
 
     return QGIS_APP, CANVAS, IFACE, PARENT
+
+
+def qgis_version():
+    """Get the version of QGIS.
+
+    :returns: QGIS Version where 10700 represents QGIS 1.7 etc.
+    :rtype: int
+    """
+    version = unicode(QGis.QGIS_VERSION_INT)
+    version = int(version)
+    return version
